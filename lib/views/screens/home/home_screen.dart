@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_formation/data/models/pokedex_entry.dart';
 
-import '../pokedex/components/pokedex_entry_card.dart';
+import 'package:flutter_formation/views/widgets/header_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -16,10 +15,7 @@ class _MyHomePageState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
+      appBar: HeaderBar(title: widget.title),
       body: Container(),
     );
   }
