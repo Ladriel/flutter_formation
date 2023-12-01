@@ -17,6 +17,21 @@ class _MyHomePageState extends State<HomeScreen> {
     PokedexEntry(name: "Bulbizarre", number: 1, sprite: "1.png"),
     PokedexEntry(name: "Salamèche", number: 4, sprite: "4.png"),
     PokedexEntry(name: "Carapuce", number: 7, sprite: "7.png"),
+    PokedexEntry(name: "Bulbizarre", number: 1, sprite: "1.png"),
+    PokedexEntry(name: "Salamèche", number: 4, sprite: "4.png"),
+    PokedexEntry(name: "Carapuce", number: 7, sprite: "7.png"),
+    PokedexEntry(name: "Bulbizarre", number: 1, sprite: "1.png"),
+    PokedexEntry(name: "Salamèche", number: 4, sprite: "4.png"),
+    PokedexEntry(name: "Carapuce", number: 7, sprite: "7.png"),
+    PokedexEntry(name: "Bulbizarre", number: 1, sprite: "1.png"),
+    PokedexEntry(name: "Salamèche", number: 4, sprite: "4.png"),
+    PokedexEntry(name: "Carapuce", number: 7, sprite: "7.png"),
+    PokedexEntry(name: "Bulbizarre", number: 1, sprite: "1.png"),
+    PokedexEntry(name: "Salamèche", number: 4, sprite: "4.png"),
+    PokedexEntry(name: "Carapuce", number: 7, sprite: "7.png"),
+    PokedexEntry(name: "Bulbizarre", number: 1, sprite: "1.png"),
+    PokedexEntry(name: "Salamèche", number: 4, sprite: "4.png"),
+    PokedexEntry(name: "Carapuce", number: 7, sprite: "7.png"),
   ];
 
   @override
@@ -31,13 +46,18 @@ class _MyHomePageState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            ListView(
-              shrinkWrap: true,
-              children: entries
-                  .map(
-                    (entry) => PokedexEntryCard(entry: entry, theme: theme),
-                  )
-                  .toList(),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: entries
+                    .map(
+                      (entry) => PokedexEntryCard(
+                        entry: entry,
+                        theme: theme,
+                      ),
+                    )
+                    .toList(),
+              ),
             ),
           ],
         ),
