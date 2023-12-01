@@ -19,6 +19,7 @@ class _MyHomePageState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -26,13 +27,26 @@ class _MyHomePageState extends State<HomeScreen> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             ListView(
+              shrinkWrap: true,
               children: entries
                   .map(
-                    (entry) => Card(
-                      child: Text(entry.name),
+                    (entry) => SizedBox(
+                      height: 60,
+                      child: Card(
+                        color: theme.colorScheme.background,
+                        child: Center(
+                          child: Text(
+                            entry.name,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: theme.colorScheme.onBackground,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   )
                   .toList(),
