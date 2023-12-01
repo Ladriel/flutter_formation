@@ -10,9 +10,10 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return AppBar(
-      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      title: Text(title),
+      backgroundColor: theme.colorScheme.primary,
+      title: Text(title, style: TextStyle(color: theme.colorScheme.onPrimary),),
     );
   }
 
