@@ -12,6 +12,7 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return AppBar(
+      iconTheme: IconThemeData(color: theme.colorScheme.onPrimary),
       backgroundColor: theme.colorScheme.primary,
       title: Text(title, style: TextStyle(color: theme.colorScheme.onPrimary),),
     );

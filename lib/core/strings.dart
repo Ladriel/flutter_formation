@@ -3,4 +3,5 @@ class Strings {
   static const homeTitle = "Home";
   static const pokedexTab = "Pokedex";
   static const favoritesTab = "Favorites";
+  static const detailScreenTitle = "Detail";
 }
