@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_formation/data/models/pokedex_entry.dart';
 
+import '../../widgets/pokedex_entry_card.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
 
@@ -33,21 +35,7 @@ class _MyHomePageState extends State<HomeScreen> {
               shrinkWrap: true,
               children: entries
                   .map(
-                    (entry) => SizedBox(
-                      height: 60,
-                      child: Card(
-                        color: theme.colorScheme.background,
-                        child: Center(
-                          child: Text(
-                            entry.name,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: theme.colorScheme.onBackground,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    (entry) => PokedexEntryCard(entry: entry, theme: theme),
                   )
                   .toList(),
             ),
