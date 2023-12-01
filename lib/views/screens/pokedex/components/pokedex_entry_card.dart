@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../data/models/pokedex_entry.dart';
+import 'package:flutter_formation/data/models/pokedex_entry.dart';
 
 class PokedexEntryCard extends StatelessWidget {
   final PokedexEntry entry;
