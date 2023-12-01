@@ -4,6 +4,9 @@ import 'package:flutter_formation/views/screens/pokedex/components/pokedex_entry
 
 import 'package:flutter_formation/data/models/pokedex_entry.dart';
 
+import 'package:flutter_formation/data/poke_api.dart';
+import 'package:flutter_formation/data/repository.dart';
+
 class PokedexScreen extends StatefulWidget {
   const PokedexScreen({super.key});
 
@@ -16,22 +19,18 @@ class _PokedexScreenState extends State<PokedexScreen> {
     PokedexEntry(name: "Bulbizarre", number: 1, sprite: "1.png"),
     PokedexEntry(name: "Salamèche", number: 4, sprite: "4.png"),
     PokedexEntry(name: "Carapuce", number: 7, sprite: "7.png"),
-    PokedexEntry(name: "Bulbizarre", number: 1, sprite: "1.png"),
-    PokedexEntry(name: "Salamèche", number: 4, sprite: "4.png"),
-    PokedexEntry(name: "Carapuce", number: 7, sprite: "7.png"),
-    PokedexEntry(name: "Bulbizarre", number: 1, sprite: "1.png"),
-    PokedexEntry(name: "Salamèche", number: 4, sprite: "4.png"),
-    PokedexEntry(name: "Carapuce", number: 7, sprite: "7.png"),
-    PokedexEntry(name: "Bulbizarre", number: 1, sprite: "1.png"),
-    PokedexEntry(name: "Salamèche", number: 4, sprite: "4.png"),
-    PokedexEntry(name: "Carapuce", number: 7, sprite: "7.png"),
-    PokedexEntry(name: "Bulbizarre", number: 1, sprite: "1.png"),
-    PokedexEntry(name: "Salamèche", number: 4, sprite: "4.png"),
-    PokedexEntry(name: "Carapuce", number: 7, sprite: "7.png"),
-    PokedexEntry(name: "Bulbizarre", number: 1, sprite: "1.png"),
-    PokedexEntry(name: "Salamèche", number: 4, sprite: "4.png"),
-    PokedexEntry(name: "Carapuce", number: 7, sprite: "7.png"),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    Repository repository = Repository(pokemonAPIClient: PokeAPIClient());
+    repository.getPokedexEntries().then((value) => setState(
+          () {
+            entries = value;
+          },
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {

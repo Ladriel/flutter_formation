@@ -52,12 +52,21 @@ class PokedexEntry {
   }
 
   factory PokedexEntry.fromMap(Map<String, dynamic> map) {
+    var url = map['url'] as String;
+    var trimLastSlash = url.substring(0, url.length - 1);
+    String numberString = trimLastSlash.substring(
+        trimLastSlash.lastIndexOf('/') + 1, trimLastSlash.length);
+    int number = int.parse(numberString);
+    String spriteUrl = buildSpriteUrl(number);
     return PokedexEntry(
       name: map['name'] as String,
-      number: map['number'] as int,
-      sprite: map['sprite'] as String,
+      number: number,
+      sprite: spriteUrl,
     );
   }
 
+  static String buildSpriteUrl(int number) {
+    return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$number.png";
+  }
 //</editor-fold>
 }
