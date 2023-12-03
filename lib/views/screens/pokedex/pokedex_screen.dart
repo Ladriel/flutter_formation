@@ -15,21 +15,32 @@ class PokedexScreen extends StatefulWidget {
 }
 
 class _PokedexScreenState extends State<PokedexScreen> {
-  List<PokedexEntry> entries = <PokedexEntry>[
-    PokedexEntry(name: "Bulbizarre", number: 1, sprite: "1.png"),
-    PokedexEntry(name: "Salamèche", number: 4, sprite: "4.png"),
-    PokedexEntry(name: "Carapuce", number: 7, sprite: "7.png"),
-  ];
+  bool loading = true;
+  String? error;
+  List<PokedexEntry>? entries = <PokedexEntry>[];
 
   @override
   void initState() {
     super.initState();
     Repository repository = Repository(pokemonAPIClient: PokeAPIClient());
-    repository.getPokedexEntries().then((value) => setState(
-          () {
-            entries = value;
-          },
-        ));
+    try {
+      repository.getPokedexEntries().then(
+            (value) => setState(
+              () {
+                loading = false;
+                entries = value;
+              },
+            ),
+          );
+    } catch (e) {
+      print("error $e");
+      setState(
+        () {
+          loading = false;
+          error = e.toString();
+        },
+      );
+    }
   }
 
   @override
@@ -38,21 +49,27 @@ class _PokedexScreenState extends State<PokedexScreen> {
 
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Expanded(
-            child: ListView(
-              shrinkWrap: true,
-              children: entries
-                  .map(
-                    (entry) => PokedexEntryCard(
-                      entry: entry,
-                      theme: theme,
-                    ),
-                  )
-                  .toList(),
-            ),
-          ),
+          loading
+              ? CircularProgressIndicator()
+              : error != null
+                  ? Text("Une erreur est survenue !")
+                  : entries != null
+                      ? Expanded(
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: entries!
+                                .map(
+                                  (entry) => PokedexEntryCard(
+                                    entry: entry,
+                                    theme: theme,
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                        )
+                      : Text("Aucun pokemons !"),
         ],
       ),
     );
