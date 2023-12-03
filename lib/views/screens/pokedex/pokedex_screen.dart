@@ -3,9 +3,12 @@ import 'package:flutter_formation/views/screens/pokedex/components/pokedex_entry
 import 'package:provider/provider.dart';
 import 'package:flutter_formation/state/pokedex_state.dart';
 
+import 'components/pokedex_grid.dart';
+
 class PokedexScreen extends StatelessWidget {
-  const PokedexScreen(
-      {super.key,});
+  const PokedexScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +24,10 @@ class PokedexScreen extends StatelessWidget {
                   ? Text("Une erreur est survenue !")
                   : pokedexState.entries != null
                       ? Expanded(
-                          child: ListView(
-                            shrinkWrap: true,
-                            children: pokedexState.entries!
-                                .map(
-                                  (entry) => PokedexEntryCard(
-                                    entry: entry,
-                                  ),
-                                )
-                                .toList(),
+                        child: PokedexGrid(
+                            entries: pokedexState.entries!,
                           ),
-                        )
+                      )
                       : Text("Aucun pokemons !"),
         ],
       ),
