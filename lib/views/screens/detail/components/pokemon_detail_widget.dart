@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_formation/data/models/pokedex_entry.dart';
 
 import 'package:flutter_formation/data/models/pokemon_detail.dart';
 import 'package:flutter_formation/state/favorites_state.dart';
@@ -11,9 +12,14 @@ import 'detail_title.dart';
 import 'detail_types.dart';
 
 class PokemonDetailWidget extends StatelessWidget {
+  final PokedexEntry entry;
   final PokemonDetail detail;
 
-  const PokemonDetailWidget({super.key, required this.detail});
+  const PokemonDetailWidget({
+    super.key,
+    required this.detail,
+    required this.entry,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +35,12 @@ class PokemonDetailWidget extends StatelessWidget {
               children: [
                 DetailTitle(id: detail.id, name: detail.name),
                 FavoriteButton(
-                  isFavorite: favoriteState.favorites.contains(detail.name),
+                  isFavorite: favoriteState.favorites.contains(entry),
                   callBack: () {
-                    if (favoriteState.isFavorite(detail.name)) {
-                      favoriteState.removeFavorite(detail.name);
+                    if (favoriteState.isFavorite(entry)) {
+                      favoriteState.removeFavorite(entry);
                     } else {
-                      favoriteState.addFavorite(detail.name);
+                      favoriteState.addFavorite(entry);
                     }
                   },
                 ),

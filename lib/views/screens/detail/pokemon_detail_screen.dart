@@ -30,6 +30,7 @@ class PokemonDetailScreen extends StatelessWidget {
                     ? Text("Une erreur est survenue !")
                     : detailState.detail != null
                         ? PokemonDetailWidget(
+                              entry: detailState.entry,
                               detail: detailState.detail!,
                           ) : Text("Pas d'information !"),
           ],
