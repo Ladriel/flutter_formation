@@ -23,7 +23,7 @@ class _MyHomePageState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return Scaffold(
-      appBar: HeaderBar(title: widget.title),
+      appBar: HeaderBar(title: tabs[currentIndex]),
       body: DefaultTabController(
         length: 2,
         child: IndexedStack(
