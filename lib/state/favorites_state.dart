@@ -12,7 +12,20 @@ class FavoritesState with ChangeNotifier {
   }
 
   addFavorite(String name) {
-    _favorites.add(name);
-    notifyListeners();
+    if (!_favorites.contains(name)) {
+      _favorites.add(name);
+      notifyListeners();
+    }
+  }
+
+  removeFavorite(String name) {
+    if (_favorites.contains(name)) {
+      _favorites.remove(name);
+      notifyListeners();
+    }
+  }
+
+  isFavorite(String name) {
+    return _favorites.contains(name);
   }
 }
