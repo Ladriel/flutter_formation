@@ -28,9 +28,7 @@ class PokedexGrid extends StatelessWidget {
         children: entries
             .map(
               (entry) => PokedexEntryCard(
-                id: entry.number,
-                name: entry.name,
-                imageUrl: entry.sprite,
+                pokedexEntry: entry,
               ),
             )
             .toList());
