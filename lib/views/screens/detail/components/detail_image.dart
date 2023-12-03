@@ -21,10 +21,12 @@ class DetailImage extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
             ),
-            Image.network(
-              image,
-              fit: BoxFit.contain,
-              alignment: Alignment.center,
+            Center(
+              child: Image.network(
+                image,
+                fit: BoxFit.contain,
+                alignment: Alignment.center,
+              ),
             ),
           ],
         ),
