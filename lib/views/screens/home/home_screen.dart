@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_formation/state/favorites_state.dart';
+import 'package:flutter_formation/state/pokedex_state.dart';
 import 'package:flutter_formation/views/screens/favorites/favorites_screen.dart';
 import 'package:flutter_formation/views/screens/pokedex/pokedex_screen.dart';
 
@@ -24,9 +25,11 @@ class _MyHomePageState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
-    return ChangeNotifierProvider(
-      create: (context) => FavoritesState(),
-      child: Scaffold(
+    return MultiProvider(providers: [
+        ChangeNotifierProvider<PokedexState>(create: (_) => PokedexState(),),
+        ChangeNotifierProvider<FavoritesState>(create: (_) => FavoritesState(),),
+      ],
+      builder: (context, _) => Scaffold(
         appBar: HeaderBar(title: widget.title),
         body: DefaultTabController(
           length: 2,
