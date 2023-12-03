@@ -33,13 +33,8 @@ class PokedexEntryCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => MultiProvider(
-              providers: [
-                ChangeNotifierProvider<PokemonDetailState>(
-                  create: (_) => PokemonDetailState(pokedexEntry),
-                ),
-                ChangeNotifierProvider<FavoritesState>.value(value: FavoritesState()),
-              ],
+            builder: (context) => ChangeNotifierProvider<PokemonDetailState>(
+              create: (_) => PokemonDetailState(pokedexEntry),
               builder: (context, _) => PokemonDetailScreen(),
             ),
           ),
