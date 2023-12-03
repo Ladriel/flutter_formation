@@ -7,19 +7,19 @@ import 'package:flutter_formation/views/screens/detail/pokemon_detail_screen.dar
 import 'package:flutter_formation/views/widgets/favorite_button.dart';
 import 'package:provider/provider.dart';
 
+import 'package:flutter_formation/core/theme.dart';
+
 class PokedexEntryCard extends StatelessWidget {
   final PokedexEntry entry;
 
   const PokedexEntryCard({
     super.key,
     required this.entry,
-    required this.theme,
   });
-
-  final ThemeData theme;
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Provider.of<AppTheme>(context).theme;
     return SizedBox(
       height: 60,
       child: InkWell(

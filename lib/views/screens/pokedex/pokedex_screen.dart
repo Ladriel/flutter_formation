@@ -46,8 +46,6 @@ class _PokedexScreenState extends State<PokedexScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
-
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +62,6 @@ class _PokedexScreenState extends State<PokedexScreen> {
                                 .map(
                                   (entry) => PokedexEntryCard(
                                     entry: entry,
-                                    theme: theme,
                                   ),
                                 )
                                 .toList(),
