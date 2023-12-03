@@ -4,9 +4,7 @@ import 'package:flutter_formation/data/models/pokedex_entry.dart';
 // The Repository handles our different data sources (network, cache, local db)
 // This is were we make the switch from pure datas to our model dtos
 class Repository {
-  final PokeAPIClient pokemonAPIClient;
-
-  Repository({required this.pokemonAPIClient});
+  final PokeAPIClient pokemonAPIClient = PokeAPIClient();
 
   Future<List<PokedexEntry>> getPokedexEntries() async {
     final entriesDatas = await pokemonAPIClient.fetchPokedexEntriesDatas();

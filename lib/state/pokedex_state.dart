@@ -15,9 +15,8 @@ class PokedexState with ChangeNotifier {
   }
 
   fetchPokedexEntries() async {
-    Repository repository = Repository(pokemonAPIClient: PokeAPIClient());
     try {
-      entries = await repository.getPokedexEntries();
+      entries = await Repository().getPokedexEntries();
     } catch (e) {
       print("error $e");
       error = e.toString();
