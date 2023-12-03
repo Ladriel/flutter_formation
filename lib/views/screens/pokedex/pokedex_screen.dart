@@ -8,7 +8,10 @@ import 'package:flutter_formation/data/poke_api.dart';
 import 'package:flutter_formation/data/repository.dart';
 
 class PokedexScreen extends StatefulWidget {
-  const PokedexScreen({super.key});
+  final Function(String) callBack;
+
+  const PokedexScreen(
+      {super.key, required this.callBack});
 
   @override
   State<PokedexScreen> createState() => _PokedexScreenState();
@@ -64,6 +67,7 @@ class _PokedexScreenState extends State<PokedexScreen> {
                                   (entry) => PokedexEntryCard(
                                     entry: entry,
                                     theme: theme,
+                                    callBack: widget.callBack,
                                   ),
                                 )
                                 .toList(),

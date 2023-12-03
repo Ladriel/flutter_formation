@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 
 class FavoritesScreen extends StatelessWidget {
-  const FavoritesScreen({super.key});
+  final List<String> favorites;
+  const FavoritesScreen({super.key, required this.favorites});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("To be coming"),
+    return Column(
+      children:
+        favorites.map((fav) => Text(fav),).toList(),
     );
   }
 }
