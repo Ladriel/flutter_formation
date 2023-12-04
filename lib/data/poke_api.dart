@@ -7,7 +7,7 @@ import 'package:flutter_formation/core/exceptions.dart';
 // Simple HTTP client to fetch datas from PokeAPI
 class PokeAPIClient {
   static const baseUrl = 'https://pokeapi.co/api/v2';
-  var client = http.Client();
+  static var client = http.Client();
 
   // Get the 151 first pokemons to display as a list in pokedex screen
   Future<List<dynamic>> fetchPokedexEntriesDatas() async {
