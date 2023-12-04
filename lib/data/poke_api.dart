@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
@@ -21,6 +22,7 @@ class PokeAPIClient {
       }
       return body['results'] as List;
     } catch (exception) {
+      log("exception $exception");
       throw NetworkException(code: 500, message: exception.toString());
     }
   }
@@ -38,6 +40,7 @@ class PokeAPIClient {
       print("fetchPokemonDetails result = $body");
       return body;
     } catch (exception) {
+      log("exception $exception");
       throw NetworkException(code: 500, message: exception.toString());
     }
   }
