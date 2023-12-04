@@ -27,12 +27,12 @@ class PokemonDetailScreen extends StatelessWidget {
             detailState.loading
                 ? CircularProgressIndicator()
                 : detailState.error != null
-                    ? Text("Une erreur est survenue !")
+                    ? Text(Strings.error)
                     : detailState.detail != null
                         ? PokemonDetailWidget(
                               entry: detailState.entry,
                               detail: detailState.detail!,
-                          ) : Text("Pas d'information !"),
+                          ) : Text(Strings.empty),
           ],
         ),
       ),

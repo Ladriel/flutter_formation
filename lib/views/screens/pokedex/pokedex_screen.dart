@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_formation/views/screens/pokedex/components/pokedex_entry_card.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_formation/state/pokedex_state.dart';
-
+import 'package:flutter_formation/core/strings.dart';
 import 'components/pokedex_grid.dart';
 
 class PokedexScreen extends StatelessWidget {
@@ -21,14 +20,14 @@ class PokedexScreen extends StatelessWidget {
           pokedexState.loading
               ? CircularProgressIndicator()
               : pokedexState.error != null
-                  ? Text("Une erreur est survenue !")
+                  ? Text(Strings.error)
                   : pokedexState.entries != null
                       ? Expanded(
                         child: PokedexGrid(
                             entries: pokedexState.entries!,
                           ),
                       )
-                      : Text("Aucun pokemons !"),
+                      : Text(Strings.empty),
         ],
       ),
     );
