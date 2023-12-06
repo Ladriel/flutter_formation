@@ -10,26 +10,25 @@ class DetailImage extends StatelessWidget {
         maxHeight: 500,
       ),
       color: Colors.red,
-      child: Center(
-        child: Stack(
-          children: [
-            Container(
-              height: 500,
-              width: 500,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            height: 500,
+            width: 500,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
             ),
-            Center(
-              child: Image.network(
-                image,
-                fit: BoxFit.contain,
-                alignment: Alignment.center,
-              ),
+          ),
+          Center(
+            child: Image.network(
+              image,
+              fit: BoxFit.contain,
+              alignment: Alignment.center,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
