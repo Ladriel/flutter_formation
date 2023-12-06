@@ -12,6 +12,8 @@ class PokedexState with ChangeNotifier {
   }
 
   fetchPokedexEntries() async {
+    loading = true;
+    notifyListeners();
     try {
       entries = await Repository().getPokedexEntries();
     } catch (e) {
