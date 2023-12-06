@@ -20,13 +20,22 @@ class PokedexScreen extends StatelessWidget {
           pokedexState.loading
               ? CircularProgressIndicator()
               : pokedexState.error != null
-                  ? Text(Strings.error)
+                  ? Column(
+                      children: [
+                        Text(Strings.error),
+                        IconButton(
+                            onPressed: () {
+                              pokedexState.fetchPokedexEntries();
+                            },
+                            icon: Icon(Icons.refresh))
+                      ],
+                    )
                   : pokedexState.entries != null
                       ? Expanded(
-                        child: PokedexGrid(
+                          child: PokedexGrid(
                             entries: pokedexState.entries!,
                           ),
-                      )
+                        )
                       : Text(Strings.empty),
         ],
       ),
