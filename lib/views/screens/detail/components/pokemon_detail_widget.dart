@@ -24,37 +24,39 @@ class PokemonDetailWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FavoritesState favoriteState = Provider.of<FavoritesState>(context);
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                DetailTitle(id: detail.id, name: detail.name),
-                FavoriteButton(
-                  isFavorite: favoriteState.favorites.contains(entry),
-                  callBack: () {
-                    if (favoriteState.isFavorite(entry)) {
-                      favoriteState.removeFavorite(entry);
-                    } else {
-                      favoriteState.addFavorite(entry);
-                    }
-                  },
-                ),
-              ],
+    return Expanded(
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  DetailTitle(id: detail.id, name: detail.name),
+                  FavoriteButton(
+                    isFavorite: favoriteState.favorites.contains(entry),
+                    callBack: () {
+                      if (favoriteState.isFavorite(entry)) {
+                        favoriteState.removeFavorite(entry);
+                      } else {
+                        favoriteState.addFavorite(entry);
+                      }
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-          DetailImage(
-            image: detail.artwork,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: DetailTypes(types: detail.types),
-          )
-        ],
+            DetailImage(
+              image: detail.artwork,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DetailTypes(types: detail.types),
+            )
+          ],
+        ),
       ),
     );
   }
