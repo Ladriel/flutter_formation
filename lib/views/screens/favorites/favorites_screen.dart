@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_formation/state/favorites_state.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +19,10 @@ class FavoritesScreen extends StatelessWidget {
                   shrinkWrap: true,
                   children: favoritesState.favorites
                       .map(
-                        (fav) => FavoriteCard(entry: fav),
+                        (fav) => FavoriteCard(
+                          entry: fav,
+                          healthPercent: Random().nextInt(10) / 10,
+                        ),
                       )
                       .toList(),
                 )
