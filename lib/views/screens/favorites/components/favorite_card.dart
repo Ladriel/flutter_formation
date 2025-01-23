@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_formation/data/models/pokedex_entry.dart';
-import 'package:flutter_formation/views/widgets/animation_widget.dart';
+import 'package:flutter_formation/views/widgets/shake_animation_widget.dart';
 
 class FavoriteCard extends StatelessWidget {
   final PokedexEntry entry;
@@ -25,27 +25,30 @@ class FavoriteCard extends StatelessWidget {
             Flexible(
               flex: 3,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  AnimationWidget(
+                  ShakeAnimationWidget(
                     key: Key("anim_${entry.number}_$healthPercent"),
                     duration: Duration(
-                        milliseconds: (1100 - (1000 * healthPercent)).toInt()),
+                        milliseconds: (1050 - (1000 * healthPercent))
+                            .toInt()), // a lower health == a slower animation
                     child: Image.network(
                       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${entry.number}.png",
                       fit: BoxFit.contain,
                       alignment: Alignment.center,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(entry.name),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(entry.name),
+                    ),
                   ),
                 ],
               ),
             ),
-            Flexible(flex: 3, child: _lifeBar(healthPercent, context)),
+            Flexible(flex: 2, child: _lifeBar(healthPercent, context)),
           ],
         ),
       ),
