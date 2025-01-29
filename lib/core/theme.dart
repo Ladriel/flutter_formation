@@ -12,6 +12,15 @@ class AppTheme with ChangeNotifier {
 
   static final lightTheme = ThemeData.from(
     colorScheme: ColorScheme.fromSeed(
+      brightness: Brightness.light,
+      seedColor: Colors.red,
+    ),
+    useMaterial3: true,
+  );
+
+  static final darkTheme = ThemeData.from(
+    colorScheme: ColorScheme.fromSeed(
+      brightness: Brightness.dark,
       seedColor: Colors.red,
     ),
     useMaterial3: true,

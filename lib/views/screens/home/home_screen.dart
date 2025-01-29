@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_formation/views/screens/favorites/favorites_screen.dart';
 import 'package:flutter_formation/views/screens/pokedex/pokedex_screen.dart';
+import 'package:flutter_formation/views/widgets/bottom_bar.dart';
 
 import 'package:flutter_formation/views/widgets/header_bar.dart';
 
@@ -21,44 +22,25 @@ class _MyHomePageState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: HeaderBar(title: tabs[currentIndex]),
       body: DefaultTabController(
         length: 2,
         child: IndexedStack(
           index: currentIndex,
-          children: [
+          children: const [
             PokedexScreen(),
             FavoritesScreen(),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: _getTabs(),
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: theme.colorScheme.onPrimary,
-        backgroundColor: theme.colorScheme.primary,
-        unselectedItemColor: theme.colorScheme.onPrimary.withAlpha(125),
-        selectedFontSize: 16,
-        currentIndex: currentIndex,
-        onTap: (int index) {
-          setState(
-            () {
+      bottomNavigationBar: BottomBar(
+          currentIndex: currentIndex,
+          onTap: (index) {
+            setState(() {
               currentIndex = index;
-            },
-          );
-        },
-      ),
+            });
+          }),
     );
-  }
-
-  List<BottomNavigationBarItem> _getTabs() {
-    return [
-      BottomNavigationBarItem(
-          icon: Icon(Icons.list), label: Strings.pokedexTab),
-      BottomNavigationBarItem(
-          icon: Icon(Icons.favorite), label: Strings.favoritesTab),
-    ];
   }
 }

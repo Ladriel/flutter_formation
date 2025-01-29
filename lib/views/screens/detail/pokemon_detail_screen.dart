@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 
 import 'package:flutter_formation/core/strings.dart';
 
+import 'components/favorite_button.dart';
+
 class PokemonDetailScreen extends StatelessWidget {
   const PokemonDetailScreen({
     super.key,
@@ -15,6 +17,8 @@ class PokemonDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final detailState = Provider.of<PokemonDetailState>(context);
+    final favoriteState = Provider.of<FavoritesState>(context);
+    final detail = detailState.detail;
 
     return Scaffold(
       appBar: HeaderBar(
@@ -28,13 +32,24 @@ class PokemonDetailScreen extends StatelessWidget {
                 ? CircularProgressIndicator()
                 : detailState.error != null
                     ? Text(Strings.error)
-                    : detailState.detail != null
+                    : detail != null
                         ? PokemonDetailWidget(
-                              entry: detailState.entry,
-                              detail: detailState.detail!,
-                          ) : Text(Strings.empty),
+                            entry: detailState.entry,
+                            detail: detail,
+                          )
+                        : Text(Strings.empty),
           ],
         ),
+      ),
+      floatingActionButton: FavoriteButton(
+        isFavorite: favoriteState.favorites.contains(detailState.entry),
+        callBack: () {
+          if (favoriteState.isFavorite(detailState.entry)) {
+            favoriteState.removeFavorite(detailState.entry);
+          } else {
+            favoriteState.addFavorite(detailState.entry);
+          }
+        },
       ),
     );
   }

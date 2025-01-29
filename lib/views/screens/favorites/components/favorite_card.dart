@@ -61,7 +61,7 @@ class FavoriteCard extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: Colors.grey,
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
             borderRadius: BorderRadius.all(
               Radius.circular(40),
             ),

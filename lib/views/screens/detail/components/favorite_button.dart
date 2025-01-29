@@ -9,7 +9,6 @@ class FavoriteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
     return Builder(builder: (context) {
       return IconButton(
         iconSize: 35,
@@ -19,7 +18,7 @@ class FavoriteButton extends StatelessWidget {
         icon: isFavorite
             ? Icon(Icons.favorite)
             : Icon(Icons.favorite_border_outlined),
-        color: theme.primaryColor,
+        color: Colors.red,
       );
     });
   }

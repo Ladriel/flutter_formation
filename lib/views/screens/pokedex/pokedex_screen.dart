@@ -30,10 +30,10 @@ class PokedexScreen extends StatelessWidget {
                             icon: Icon(Icons.refresh))
                       ],
                     )
-                  : pokedexState.entries != null
+                  : pokedexState.entries.isNotEmpty
                       ? Expanded(
                           child: PokedexGrid(
-                            entries: pokedexState.entries!,
+                            entries: pokedexState.entries,
                           ),
                         )
                       : Text(Strings.empty),

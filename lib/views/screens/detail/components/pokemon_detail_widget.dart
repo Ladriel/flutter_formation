@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_formation/data/models/pokedex_entry.dart';
 
 import 'package:flutter_formation/data/models/pokemon_detail.dart';
@@ -23,38 +24,22 @@ class PokemonDetailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FavoritesState favoriteState = Provider.of<FavoritesState>(context);
     return Expanded(
       child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  DetailTitle(id: detail.id, name: detail.name),
-                  FavoriteButton(
-                    isFavorite: favoriteState.favorites.contains(entry),
-                    callBack: () {
-                      if (favoriteState.isFavorite(entry)) {
-                        favoriteState.removeFavorite(entry);
-                      } else {
-                        favoriteState.addFavorite(entry);
-                      }
-                    },
-                  ),
-                ],
-              ),
-            ),
-            DetailImage(
-              image: detail.artwork,
+              child: DetailTitle(name: detail.name),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: DetailTypes(types: detail.types),
-            )
+            ),
+            DetailImage(
+              image: detail.artwork,
+            ),
           ],
         ),
       ),

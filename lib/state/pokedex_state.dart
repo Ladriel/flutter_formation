@@ -5,7 +5,7 @@ import 'package:flutter_formation/data/repository.dart';
 class PokedexState with ChangeNotifier {
   bool loading = true;
   String? error;
-  List<PokedexEntry>? entries = <PokedexEntry>[];
+  List<PokedexEntry> entries = <PokedexEntry>[];
 
   PokedexState() {
     fetchPokedexEntries();

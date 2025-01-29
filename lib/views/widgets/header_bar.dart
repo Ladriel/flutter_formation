@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import 'package:flutter_formation/core/theme.dart';
 
 class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
   const HeaderBar({
@@ -13,11 +10,16 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Provider.of<AppTheme>(context).theme;
+    final theme = Theme.of(context);
     return AppBar(
-      iconTheme: IconThemeData(color: theme.colorScheme.onPrimary),
-      backgroundColor: theme.colorScheme.primary,
-      title: Text(title, style: TextStyle(color: theme.colorScheme.onPrimary),),
+      title: Text(
+        title,
+        style: TextStyle(color: theme.colorScheme.onPrimaryContainer),
+      ),
+      backgroundColor: theme.colorScheme.primaryContainer,
+      iconTheme: IconThemeData(
+        color: theme.colorScheme.onPrimaryContainer,
+      ),
     );
   }
 

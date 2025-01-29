@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_formation/core/strings.dart';
 import 'package:flutter_formation/core/theme.dart';
 import 'package:flutter_formation/state/favorites_state.dart';
@@ -16,11 +17,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var brightness =
+        SchedulerBinding.instance.platformDispatcher.platformBrightness;
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<AppTheme>(
-          create: (_) => AppTheme(AppTheme.lightTheme),
-        ),
         ChangeNotifierProvider<PokedexState>(
           create: (_) => PokedexState(),
         ),
@@ -30,7 +30,9 @@ class MyApp extends StatelessWidget {
       ],
       builder: (context, _) => MaterialApp(
         title: Strings.appTitle,
-        theme: Provider.of<AppTheme>(context).theme,
+        theme: brightness == Brightness.dark
+            ? AppTheme.darkTheme
+            : AppTheme.lightTheme,
         home: HomeScreen(
           title: Strings.homeTitle,
         ),

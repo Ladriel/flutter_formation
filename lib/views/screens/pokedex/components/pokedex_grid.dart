@@ -9,25 +9,20 @@ class PokedexGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final crossAxisCount = (width > 1000)
-        ? 5
-        : (width > 700)
-            ? 4
-            : (width > 450)
-                ? 3
-                : 2;
+    final space = MediaQuery.of(context).size.width;
+    const childSize = 120.0;
+    final crossAxisCount = (space / childSize).toInt();
     return GridView.count(
         padding: const EdgeInsets.all(7),
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: 4,
         mainAxisSpacing: 4,
-        semanticChildCount: 250,
-        childAspectRatio: 200 / 244,
+        semanticChildCount: 151,
         physics: const BouncingScrollPhysics(),
         children: entries
             .map(
               (entry) => PokedexEntryCard(
+                size: childSize,
                 pokedexEntry: entry,
               ),
             )
