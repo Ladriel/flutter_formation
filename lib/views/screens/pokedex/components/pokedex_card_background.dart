@@ -11,7 +11,7 @@ class PokedexCardBackground extends StatelessWidget {
     return Text(
       "$id",
       style: TextStyle(
-        fontSize: 90,
+        fontSize: 80,
         fontWeight: FontWeight.bold,
         color: Colors.grey[200],
       ),
